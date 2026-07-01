@@ -1,0 +1,14 @@
+[
+  {
+	"question": "What is the primary purpose of a customs broker?",
+	"choices": [
+	  "To physically inspect cargo at the border",
+	  "To facilitate import and export compliance with customs regulations",
+	  "To set tariff rates for imported goods",
+      "To collect customs duties directly from importers"
+	],
+	"answer": 1,
+	"explanation": "Customs brokers help importers and exporters comply with CBP regulations and ensure proper documentation.",
+	"tags": ["compliance", "brokerage"]
+  }
+]
