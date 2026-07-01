@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="CLBE Master Trainer"
-run/main_scene="uid://x6op4r1nf4hp"
+run/main_scene="uid://el58jprgyqfi"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

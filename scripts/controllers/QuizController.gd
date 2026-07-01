@@ -20,6 +20,12 @@ enum QuizMode {
 var questions : Array = []
 var current_question : Dictionary = {}
 
+# Questions remaining in this session
+var remaining_questions: Array = []
+
+# Questions already answered
+var answered_questions: Array = []
+
 var current_question_number : int = 0
 var score : int = 0
 
@@ -99,16 +105,22 @@ func load_questions():
 		return
 
 	questions = json.data
+	
+	remaining_questions = questions.duplicate()
+	remaining_questions.shuffle()
 
 	print("Questions loaded: ", questions.size())
 	
 	
 func load_next_question():
-	if questions.size() == 0:
-		print("ERROR: No questions available.")
+	if remaining_questions.size() == 0:
+		show_session_complete()
 		return
 
-	current_question = questions[0]
+	current_question = remaining_questions.pop_front()
+	answered_questions.append(current_question)
+
+	current_question_number += 1
 	selected_answer = -1
 	submit_button.disabled = false
 
@@ -117,15 +129,31 @@ func load_next_question():
 	var choices = current_question.get("choices", [])
 
 	for i in range(answer_buttons.size()):
+		answer_buttons[i].modulate = Color.WHITE
+
 		if i < choices.size():
 			answer_buttons[i].text = choices[i]
 			answer_buttons[i].show()
+			answer_buttons[i].disabled = false
 		else:
 			answer_buttons[i].hide()
 
-	progress_label.text = "Question 1 of %d" % total_questions
+	progress_label.text = "Question %d of %d" % [current_question_number, min(total_questions, questions.size())]
+
 	feedback_label.text = ""
 	explanation_label.text = ""
+	next_button.hide()
+	
+func show_session_complete():
+	question_label.text = "Session Complete"
+	progress_label.text = "Final Score: %d / %d" % [score, answered_questions.size()]
+	feedback_label.text = ""
+	explanation_label.text = "Review mode and weak-topic tracking will be added next."
+
+	for button in answer_buttons:
+		button.hide()
+
+	submit_button.hide()
 	next_button.hide()
 	
 func select_answer(index: int):
@@ -173,3 +201,7 @@ func check_answer():
 
 	next_button.show()
 	submit_button.disabled = true
+
+
+func _on_next_button_pressed():
+	load_next_question()

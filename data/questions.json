@@ -1,5 +1,6 @@
 [
   {
+	"id": 1,
 	"question": "What is the primary purpose of a customs broker?",
 	"choices": [
 	  "To physically inspect cargo at the border",
@@ -8,7 +9,33 @@
       "To collect customs duties directly from importers"
 	],
 	"answer": 1,
-	"explanation": "Customs brokers help importers and exporters comply with CBP regulations and ensure proper documentation.",
-	"tags": ["compliance", "brokerage"]
+	"explanation": "Customs brokers help importers and exporters comply with CBP requirements.",
+	"tags": ["brokerage", "compliance"]
+  },
+  {
+	"id": 2,
+	"question": "How long must customs records generally be retained under 19 CFR Part 163?",
+	"choices": [
+	  "1 year",
+	  "3 years",
+	  "5 years",
+      "10 years"
+	],
+	"answer": 2,
+	"explanation": "Many customs records must generally be retained for 5 years.",
+	"tags": ["records", "compliance"]
+  },
+  {
+	"id": 3,
+	"question": "Which party is generally responsible for using reasonable care when making entry?",
+	"choices": [
+	  "The importer of record",
+	  "The steamship line",
+	  "The warehouse operator",
+      "The foreign seller"
+	],
+	"answer": 0,
+	"explanation": "The importer of record is responsible for using reasonable care when making entry.",
+	"tags": ["entry", "reasonable care"]
   }
 ]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://x6op4r1nf4hp"]
 
-[ext_resource type="Script" uid="uid://d034ymjnklsoh" path="res://scenes/QuizSession.tscn.gd" id="1_b1n6f"]
+[ext_resource type="Script" uid="uid://d034ymjnklsoh" path="res://scripts/controllers/QuizController.gd" id="1_b1n6f"]
 
 [node name="QuizSession" type="Control" unique_id=1596359190]
 layout_mode = 3
@@ -136,3 +136,4 @@ autowrap_mode = 3
 [connection signal="pressed" from="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer/AnswersContainer/ChoiceC" to="." method="_on_choice_c_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer/AnswersContainer/ChoiceD" to="." method="_on_choice_d_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer/BottomBar/NextButton" to="." method="_on_next_button_pressed"]
