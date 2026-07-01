@@ -109,7 +109,10 @@ layout_mode = 2
 
 [node name="ExplanationLabel" type="RichTextLabel" parent="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer" unique_id=2039558190]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+bbcode_enabled = true
+fit_content = true
 
 [node name="BottomBar" type="HBoxContainer" parent="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer" unique_id=917282084]
 layout_mode = 2
@@ -137,3 +140,4 @@ autowrap_mode = 3
 [connection signal="pressed" from="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer/AnswersContainer/ChoiceD" to="." method="_on_choice_d_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer/BottomBar/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer/BottomBar/QuitButton" to="." method="_on_quit_button_pressed"]

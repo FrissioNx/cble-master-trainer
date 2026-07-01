@@ -76,7 +76,10 @@ func _ready():
 	print(get_node_or_null("MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer/TitleLabel"))
 	randomize()
 
-	title_label.text = "CLBE Master Trainer"
+	if SessionManager.current_mode == SessionManager.QuizMode.EXAM:
+		title_label.text = "CLBE MASTER TRAINER — EXAM MODE"
+	else:
+		title_label.text = "CLBE MASTER TRAINER — PRACTICE MODE"
 	progress_label.text = ""
 
 	feedback_label.text = ""
@@ -113,7 +116,7 @@ func load_questions():
 	
 	
 func load_next_question():
-	if remaining_questions.size() == 0:
+	if remaining_questions.size() == 0 or current_question_number >= SessionManager.total_questions:
 		show_session_complete()
 		return
 
@@ -138,17 +141,26 @@ func load_next_question():
 		else:
 			answer_buttons[i].hide()
 
-	progress_label.text = "Question %d of %d" % [current_question_number, min(total_questions, questions.size())]
+	progress_label.text = "Question %d of %d" % [current_question_number, SessionManager.total_questions]
 
 	feedback_label.text = ""
 	explanation_label.text = ""
 	next_button.hide()
 	
 func show_session_complete():
-	question_label.text = "Session Complete"
+	if SessionManager.current_mode == SessionManager.QuizMode.EXAM:
+		question_label.text = "Exam Complete"
+	else:
+		question_label.text = "Practice Complete"
+
 	progress_label.text = "Final Score: %d / %d" % [score, answered_questions.size()]
+
+	if SessionManager.current_mode == SessionManager.QuizMode.EXAM:
+		explanation_label.text = "Review mode and detailed results will be added next."
+	else:
+		explanation_label.text = "Great work. Continue practicing to improve weak areas."
+
 	feedback_label.text = ""
-	explanation_label.text = "Review mode and weak-topic tracking will be added next."
 
 	for button in answer_buttons:
 		button.hide()
@@ -188,16 +200,23 @@ func check_answer():
 		return
 
 	var correct_answer = current_question.get("answer", -1)
+	var is_correct = selected_answer == correct_answer
 
-	if selected_answer == correct_answer:
+	if is_correct:
 		score += 1
-		feedback_label.text = "✅ Correct!"
-		feedback_label.modulate = Color.GREEN
-	else:
-		feedback_label.text = "❌ Incorrect"
-		feedback_label.modulate = Color.RED
 
-	explanation_label.text = current_question.get("explanation", "")
+	if SessionManager.current_mode == SessionManager.QuizMode.PRACTICE:
+		if is_correct:
+			feedback_label.text = "✅ Correct!"
+			feedback_label.modulate = Color.GREEN
+		else:
+			feedback_label.text = "❌ Incorrect"
+			feedback_label.modulate = Color.RED
+
+		explanation_label.text = current_question.get("explanation", "")
+	else:
+		feedback_label.text = "Answer recorded."
+		explanation_label.text = ""
 
 	next_button.show()
 	submit_button.disabled = true
@@ -205,3 +224,7 @@ func check_answer():
 
 func _on_next_button_pressed():
 	load_next_question()
+
+
+func _on_quit_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/menus/MainMenu_Test.tscn")

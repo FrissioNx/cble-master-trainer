@@ -8,9 +8,9 @@ enum QuizMode {
 
 var current_mode: QuizMode = QuizMode.PRACTICE
 
-var current_score: int = 0
-var current_question: int = 0
-var total_questions: int = 0
+var current_score := 0
+var current_question := 0
+var total_questions := 0
 
 func reset_session():
 	current_score = 0
@@ -20,7 +20,9 @@ func reset_session():
 func start_practice_mode():
 	reset_session()
 	current_mode = QuizMode.PRACTICE
+	total_questions = 10
 
 func start_exam_mode():
 	reset_session()
 	current_mode = QuizMode.EXAM
+	total_questions = 80
