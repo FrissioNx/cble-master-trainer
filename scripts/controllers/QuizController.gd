@@ -63,9 +63,12 @@ var selected_answer : int = -1
 
 @onready var next_button: Button = %NextButton
 @onready var quit_button: Button = %QuitButton
+
+
 # ==================================================
 # Startup
 # ==================================================
+
 
 func _ready():
 	print("ROOT CHILDREN:")
@@ -77,9 +80,9 @@ func _ready():
 	randomize()
 
 	if SessionManager.current_mode == SessionManager.QuizMode.EXAM:
-		title_label.text = "CLBE MASTER TRAINER — EXAM MODE"
+		title_label.text = "CBLE MASTER TRAINER — EXAM MODE"
 	else:
-		title_label.text = "CLBE MASTER TRAINER — PRACTICE MODE"
+		title_label.text = "CBLE MASTER TRAINER — PRACTICE MODE"
 	progress_label.text = ""
 
 	feedback_label.text = ""
@@ -120,7 +123,7 @@ func load_next_question():
 		show_session_complete()
 		return
 
-	current_question = remaining_questions.pop_front()
+	current_question = QuestionSelector.get_next_question(remaining_questions)
 	answered_questions.append(current_question)
 
 	current_question_number += 1
@@ -148,25 +151,8 @@ func load_next_question():
 	next_button.hide()
 	
 func show_session_complete():
-	if SessionManager.current_mode == SessionManager.QuizMode.EXAM:
-		question_label.text = "Exam Complete"
-	else:
-		question_label.text = "Practice Complete"
-
-	progress_label.text = "Final Score: %d / %d" % [score, answered_questions.size()]
-
-	if SessionManager.current_mode == SessionManager.QuizMode.EXAM:
-		explanation_label.text = "Review mode and detailed results will be added next."
-	else:
-		explanation_label.text = "Great work. Continue practicing to improve weak areas."
-
-	feedback_label.text = ""
-
-	for button in answer_buttons:
-		button.hide()
-
-	submit_button.hide()
-	next_button.hide()
+	SessionManager.current_score = score
+	get_tree().change_scene_to_file("res://scenes/shared/Results.tscn")
 	
 func select_answer(index: int):
 	selected_answer = index
@@ -201,9 +187,14 @@ func check_answer():
 
 	var correct_answer = current_question.get("answer", -1)
 	var is_correct = selected_answer == correct_answer
+	
+	var tags = current_question.get("tags", [])
+	StatisticsManager.record_answer(tags, is_correct)
+	SessionManager.current_score = score
 
 	if is_correct:
 		score += 1
+		SessionManager.current_score = score
 
 	if SessionManager.current_mode == SessionManager.QuizMode.PRACTICE:
 		if is_correct:

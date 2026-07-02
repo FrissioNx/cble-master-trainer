@@ -6,6 +6,13 @@ enum QuizMode {
 	REVIEW
 }
 
+enum SelectionMode {
+	RANDOM,
+	WEAK_AREAS
+}
+
+var selection_mode: SelectionMode = SelectionMode.RANDOM
+
 var current_mode: QuizMode = QuizMode.PRACTICE
 
 var current_score := 0
