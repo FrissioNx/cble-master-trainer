@@ -48,6 +48,14 @@ text = "CLBE Master Trainer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ModeLabel" type="Label" parent="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer" unique_id=386421773]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ReasonLabel" type="Label" parent="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer" unique_id=625944609]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="ProgressLabel" type="Label" parent="MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer" unique_id=881076365]
 unique_name_in_owner = true
 layout_mode = 2

@@ -41,6 +41,8 @@ var selected_answer : int = -1
 
 @onready var title_label: Label = %TitleLabel
 @onready var progress_label: Label = %ProgressLabel
+@onready var mode_label: Label = %ModeLabel
+@onready var reason_label: Label = %ReasonLabel
 
 @onready var question_label: Label = %QuestionLabel
 
@@ -71,20 +73,16 @@ var selected_answer : int = -1
 
 
 func _ready():
-	print("ROOT CHILDREN:")
-	for child in get_children():
-		print(child.name)
-
-	print("LOOKING FOR TITLE:")
-	print(get_node_or_null("MarginContainer/CenterContainer/QuizCard/CardMargin/VBoxContainer/TitleLabel"))
 	randomize()
 
 	if SessionManager.current_mode == SessionManager.QuizMode.EXAM:
 		title_label.text = "CBLE MASTER TRAINER — EXAM MODE"
 	else:
 		title_label.text = "CBLE MASTER TRAINER — PRACTICE MODE"
-	progress_label.text = ""
 
+	update_mode_label()
+
+	progress_label.text = ""
 	feedback_label.text = ""
 	explanation_label.text = ""
 
@@ -123,7 +121,10 @@ func load_next_question():
 		show_session_complete()
 		return
 
-	current_question = QuestionSelector.get_next_question(remaining_questions)
+	var selection: QuestionSelection = QuestionSelector.get_next_question(remaining_questions)
+
+	current_question = selection.question
+	reason_label.text = selection.reason
 	answered_questions.append(current_question)
 
 	current_question_number += 1
@@ -219,3 +220,13 @@ func _on_next_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/menus/MainMenu_Test.tscn")
+	
+func update_mode_label():
+	if SessionManager.current_mode == SessionManager.QuizMode.EXAM:
+		mode_label.text = "Exam Mode"
+		return
+
+	if SessionManager.selection_mode == SessionManager.SelectionMode.WEAK_AREAS:
+		mode_label.text = "Practice Mode • Weak Areas"
+	else:
+		mode_label.text = "Practice Mode • Random"

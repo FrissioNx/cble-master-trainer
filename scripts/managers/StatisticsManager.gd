@@ -5,10 +5,17 @@ var total_correct := 0
 
 var topic_stats := {}
 
+
+func _ready():
+	load_stats()
+
+
 func reset():
 	total_answered = 0
 	total_correct = 0
 	topic_stats.clear()
+	save_stats()
+
 
 func record_answer(tags: Array, correct: bool):
 	total_answered += 1
@@ -17,7 +24,6 @@ func record_answer(tags: Array, correct: bool):
 		total_correct += 1
 
 	for tag in tags:
-
 		if !topic_stats.has(tag):
 			topic_stats[tag] = {
 				"correct": 0,
@@ -29,14 +35,17 @@ func record_answer(tags: Array, correct: bool):
 		else:
 			topic_stats[tag]["wrong"] += 1
 
+	save_stats()
+
+
 func get_accuracy():
 	if total_answered == 0:
 		return 0.0
 
 	return (float(total_correct) / float(total_answered)) * 100.0
 
-func get_topic_accuracy(tag:String):
 
+func get_topic_accuracy(tag: String):
 	if !topic_stats.has(tag):
 		return 0.0
 
@@ -48,5 +57,27 @@ func get_topic_accuracy(tag:String):
 
 	return (float(c) / float(c + w)) * 100.0
 
+
 func get_all_topics():
 	return topic_stats.keys()
+
+
+func save_stats():
+	var data = {
+		"total_answered": total_answered,
+		"total_correct": total_correct,
+		"topic_stats": topic_stats
+	}
+
+	SaveService.save_statistics(data)
+
+
+func load_stats():
+	var data = SaveService.load_statistics()
+
+	if data.is_empty():
+		return
+
+	total_answered = int(data.get("total_answered", 0))
+	total_correct = int(data.get("total_correct", 0))
+	topic_stats = data.get("topic_stats", {})

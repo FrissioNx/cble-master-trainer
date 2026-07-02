@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://vm0a8yytln2t"]
+
+[ext_resource type="Script" uid="uid://b8wo588txupgi" path="res://scripts/controllers/DashboardController.gd" id="1_kvmen"]
+
+[node name="DashboardPanel" type="PanelContainer" unique_id=1292883073]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_kvmen")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1115544387]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=669041676]
+layout_mode = 2
+
+[node name="DashboardTitle" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1931302218]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Study Dashboard"
+
+[node name="AccuracyLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=456716603]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Overall Accuracy: --"
+
+[node name="QuestionsAnsweredLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1289821202]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Questions Answered: --"
+
+[node name="StrongestTopicLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=2110178321]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Strongest Topic: --"
+
+[node name="WeakestTopicLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=333572013]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Weakest Topic: --"

@@ -1,9 +1,10 @@
 class_name QuestionSelector
 extends RefCounted
 
-static func get_next_question(remaining_questions: Array) -> Dictionary:
+
+static func get_next_question(remaining_questions: Array) -> QuestionSelection:
 	if remaining_questions.is_empty():
-		return {}
+		return QuestionSelection.new()
 
 	match SessionManager.selection_mode:
 		SessionManager.SelectionMode.WEAK_AREAS:
@@ -12,24 +13,42 @@ static func get_next_question(remaining_questions: Array) -> Dictionary:
 			return get_random_question(remaining_questions)
 
 
-static func get_random_question(remaining_questions: Array) -> Dictionary:
-	return remaining_questions.pop_front()
+static func get_random_question(remaining_questions: Array) -> QuestionSelection:
+	var question = remaining_questions.pop_front()
+
+	return QuestionSelection.new(
+		question,
+		"Random practice session",
+		"random"
+	)
 
 
-static func get_weak_area_question(remaining_questions: Array) -> Dictionary:
+static func get_weak_area_question(remaining_questions: Array) -> QuestionSelection:
 	var weakest_question_index := 0
 	var weakest_score := 101.0
 
 	for i in range(remaining_questions.size()):
 		var question = remaining_questions[i]
 		var tags = question.get("tags", [])
-		var question_score = get_question_topic_score(tags)
+		var score = get_question_topic_score(tags)
 
-		if question_score < weakest_score:
-			weakest_score = question_score
+		if score < weakest_score:
+			weakest_score = score
 			weakest_question_index = i
 
-	return remaining_questions.pop_at(weakest_question_index)
+	var question = remaining_questions.pop_at(weakest_question_index)
+
+	var reason := "Focusing on weaker topics"
+
+	var tags = question.get("tags", [])
+	if tags.size() > 0:
+		reason = "Focusing on: %s" % tags[0]
+
+	return QuestionSelection.new(
+		question,
+		reason,
+		"weak_areas"
+	)
 
 
 static func get_question_topic_score(tags: Array) -> float:
