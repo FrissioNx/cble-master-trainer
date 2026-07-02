@@ -1,4 +1,4 @@
-# CLBE Master Trainer Roadmap
+# CBLE Master Trainer Roadmap
 
 ## Version 1.0 Goal
 

@@ -1,7 +1,7 @@
 extends Control
 
 # ==================================================
-# CLBE MASTER TRAINER 2.0
+# CBLE MASTER TRAINER 2.0
 # Quiz Controller
 # ==================================================
 
