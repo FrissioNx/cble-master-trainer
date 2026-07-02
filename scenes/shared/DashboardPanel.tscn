@@ -23,6 +23,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Overall Accuracy: --"
 
+[node name="ReadinessLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=810536225]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CBLE Readiness: --"
+
 [node name="QuestionsAnsweredLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1289821202]
 unique_name_in_owner = true
 layout_mode = 2

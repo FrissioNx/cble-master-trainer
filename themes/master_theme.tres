@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://bqqwv2lhaymtk"]
+
+[ext_resource type="FontFile" uid="uid://bhuokim2icukt" path="res://assets/fonts/static/Inter_18pt-Regular.ttf" id="1_pdl54"]
+
+[resource]
+default_font = ExtResource("1_pdl54")
+default_font_size = 18

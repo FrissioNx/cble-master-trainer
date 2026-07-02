@@ -5,6 +5,7 @@ extends PanelContainer
 @onready var questions_answered_label: Label = %QuestionsAnsweredLabel
 @onready var strongest_topic_label: Label = %StrongestTopicLabel
 @onready var weakest_topic_label: Label = %WeakestTopicLabel
+@onready var readiness_label: Label = %ReadinessLabel
 
 func _ready():
 	refresh_dashboard()
@@ -12,6 +13,7 @@ func _ready():
 func refresh_dashboard():
 	dashboard_title.text = "Study Dashboard"
 	accuracy_label.text = "Overall Accuracy: %.1f%%" % StatisticsManager.get_accuracy()
+	readiness_label.text = "CBLE Readiness: %.1f%%" % calculate_readiness_score()
 	questions_answered_label.text = "Questions Answered: %d" % StatisticsManager.total_answered
 
 	var strongest = get_strongest_topic()
@@ -43,3 +45,9 @@ func get_weakest_topic() -> String:
 			worst_topic = "%s (%.1f%%)" % [topic, accuracy]
 
 	return worst_topic
+	
+func calculate_readiness_score() -> float:
+	var accuracy = StatisticsManager.get_accuracy()
+	var volume_bonus = clamp(float(StatisticsManager.total_answered) / 100.0 * 20.0, 0.0, 20.0)
+
+	return clamp((accuracy * 0.8) + volume_bonus, 0.0, 100.0)
