@@ -22,7 +22,7 @@ offset_bottom = 40.0
 layout_mode = 2
 
 [node name="MenuCard" type="PanelContainer" parent="MarginContainer/CenterContainer" unique_id=2052792132]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
 
 [node name="CardMargin" type="MarginContainer" parent="MarginContainer/CenterContainer/MenuCard" unique_id=1755536920]

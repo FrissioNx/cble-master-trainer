@@ -11,47 +11,29 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s4ss7")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=299589186]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1517509111]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer" unique_id=543369023]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1164711625]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/CenterContainer" unique_id=2021257221]
-custom_minimum_size = Vector2(520, 0)
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/PanelContainer" unique_id=592237690]
-layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer" unique_id=1233181846]
-layout_mode = 2
-
-[node name="TitleLabel" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1019905273]
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1785313168]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=189931568]
-unique_name_in_owner = true
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=191526191]
 layout_mode = 2
 
-[node name="ResultLabel" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=971262990]
-unique_name_in_owner = true
+[node name="ResultsLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=417970559]
 layout_mode = 2
 
-[node name="SummaryLabel" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=994098492]
-unique_name_in_owner = true
+[node name="SummaryLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1968061140]
 layout_mode = 2
 
-[node name="MainMenuButton" type="Button" parent="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1429902401]
-unique_name_in_owner = true
+[node name="MainMenuButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2095707064]
 layout_mode = 2
-text = "Return to the Main Menu"
+text = "Return to Main Menu"
 
-[connection signal="pressed" from="MarginContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

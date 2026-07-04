@@ -28,41 +28,41 @@ Build a professional Customs Broker License Exam study platform with practice qu
 ---
 
 ## Milestone 3 — Application Flow
-- [ ] Main Menu
-- [ ] Practice Mode button
-- [ ] Exam Mode button
-- [ ] Statistics button
-- [ ] Question Builder button
-- [ ] Exit button
-- [ ] Scene switching
+- [x] Main Menu
+- [x] Practice Mode button
+- [x] Exam Mode button
+- [x] Statistics button
+- [x] Question Builder button
+- [x] Exit button
+- [x] Scene switching
 
 ---
 
 ## Milestone 4 — Practice Mode
-- [ ] Instant feedback
-- [ ] Explanation after each question
-- [ ] Reference/source display
-- [ ] Topic-based practice
-- [ ] Weak-area practice
+- [x] Instant feedback
+- [x] Explanation after each question
+- [x] Reference/source display
+- [x] Topic-based practice
+- [x] Weak-area practice
 
 ---
 
 ## Milestone 5 — Exam Mode
-- [ ] Timed exam
-- [ ] No feedback during exam
-- [ ] Final score screen
-- [ ] Missed question review
-- [ ] Exam-style question count
+- [x] Timed exam
+- [x] No feedback during exam
+- [x] Final score screen
+- [x] Missed question review
+- [x] Exam-style question count
 
 ---
 
 ## Milestone 6 — Results & Statistics
-- [ ] Accuracy by topic
-- [ ] Overall accuracy
-- [ ] Strongest topics
-- [ ] Weakest topics
-- [ ] Session history
-- [ ] Readiness estimate
+- [x] Accuracy by topic
+- [x] Overall accuracy
+- [x] Strongest topics
+- [x] Weakest topics
+- [x] Session history
+- [x ] Readiness estimate
 
 ---
 

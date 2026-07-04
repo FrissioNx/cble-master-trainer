@@ -60,7 +60,7 @@ func _ready():
 	print("QuizController 2.0 is running")
 	randomize()
 
-	title_label.text = "CLBE Master Trainer"
+	title_label.text = "CBLE Master Trainer"
 	progress_label.text = ""
 
 	feedback_label.text = ""

@@ -153,7 +153,9 @@ func load_next_question():
 	
 func show_session_complete():
 	SessionManager.current_score = score
-	get_tree().change_scene_to_file("res://scenes/shared/Results.tscn")
+
+	if get_parent() != null:
+		hide()
 	
 func select_answer(index: int):
 	selected_answer = index
@@ -230,3 +232,6 @@ func update_mode_label():
 		mode_label.text = "Practice Mode • Weak Areas"
 	else:
 		mode_label.text = "Practice Mode • Random"
+		
+func _on_main_menu_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/menus/MainMenu.tscn")
